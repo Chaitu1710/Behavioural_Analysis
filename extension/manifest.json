@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Digital Behavioral Fingerprinting Collector",
+  "version": "1.0.0",
+  "description": "Chrome Extension for capturing passive behavioral web telemetry (scroll velocity, focus/blur, tab switches, idle duration).",
+  "permissions": [
+    "tabs",
+    "idle",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://localhost:5000/*",
+    "http://127.0.0.1:5000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Behavioral Fingerprinting Active"
+  }
+}
